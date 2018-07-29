@@ -10,11 +10,11 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth', [
-            'except' => ['show', 'crate', 'srore']
+            'except' => ['show', 'create', 'srore']
         ]);
-//        $this->middleware('guest', [
-//            'only' => ['create']
-//        ]);
+        $this->middleware('guest', [
+            'only' => ['create']
+        ]);
     }
 
     /**
