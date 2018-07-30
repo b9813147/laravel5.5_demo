@@ -10,7 +10,7 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth', [
-            'except' => ['show', 'create', 'srore']
+            'except' => ['show', 'create', 'store', 'index']
         ]);
         $this->middleware('guest', [
             'only' => ['create']
@@ -24,7 +24,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+//        $users = User::all();
+        $users = User::query()->paginate(10);
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -55,7 +57,7 @@ class UsersController extends Controller
             'email'    => $request->email,
             'password' => bcrypt($request->password),
         ]);
-        Auth::login($user);
+//        Auth::login($user);
         session()->flash('success', '註冊成功');
         return redirect()->route('users.show', compact('user'));
     }
@@ -100,7 +102,7 @@ class UsersController extends Controller
             'name'     => $request->name,
             'password' => bcrypt($request->password),
         ]);*/
-
+        /*驗證是否是自己的*/
         $this->authorize('update', $user);
 
         $data         = [];
@@ -109,6 +111,7 @@ class UsersController extends Controller
         if ($request->password) {
             $data['password'] = bcrypt($request->password);
         }
+
         $user->update($data);
 
 
@@ -122,8 +125,11 @@ class UsersController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $this->authorize('destroy', $user);
+        $user->delete();
+        session()->flash('success', '刪除成功');
+        return back();
     }
 }
