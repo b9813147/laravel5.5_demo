@@ -11,6 +11,7 @@
         </p>
         <p>
             <a class="btn btn-lg btn-success" href="{{ route('signUp') }}" role="button">註冊</a>
+            <a class="btn btn-lg btn-success" href="{{ route('signUp') }}" role="button">註冊</a>
         </p>
     </div>
 @stop
