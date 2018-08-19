@@ -50,13 +50,22 @@ class SessionController extends Controller
         ]);
 //        $credentials = $this->validate($request, [
 //            'email'    => 'required|email|max:255',
-//            'password' => 'required'
+//            'passwords' => 'required'
 //        ]);
-
+//        echo $request->has('member');
+//        dd($request->all());
         if (Auth::attempt($credentials, $request->has('member'))) {
-            session()->flash('success', '登入成功');
-            /*[Auth::user()] 傳入使用者資訊*/
-            return redirect()->intended(route('users.show', [Auth::user()]));
+            if(Auth::user()->activated) {
+                session()->flash('success', '登入成功！');
+                return redirect()->intended(route('users.show', [Auth::user()]));
+            } else {
+                Auth::logout();
+                session()->flash('warning', '你得帳號未激活，請檢查信箱是否激活。');
+                return redirect('/');
+            }
+//            session()->flash('success', '登入成功');
+//            /*[Auth::user()] 傳入使用者資訊*/
+//            return redirect()->intended(route('users.show', [Auth::user()]));
         } else {
             session()->flash('danger', '帳號密碼不正確');
             /*返回*/

@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','登入 ')
+@section('title','登入')
 @section('content')
     <div class="col-md-offset-2 col-md-8">
         <div class="panel panel-default">
@@ -16,7 +16,7 @@
                         <input type="text" class="form-control" name="email" value="{{ old('email') }}">
                     </div>
                     <div class="form-group">
-                        <label for="">密碼</label>
+                        <label for="password">密碼(<a href="{{ route('password.request') }}">忘記密碼</a>)</label>
                         <input type="password" class="form-control" name="password" value="{{ old('password') }}">
                     </div>
                     <div class="checkbox">

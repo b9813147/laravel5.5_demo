@@ -6249,7 +6249,7 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
-         * Get the default password broker name.
+         * Get the default passwords broker name.
          *
          * @return string
          * @static
@@ -6260,7 +6260,7 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
-         * Set the default password broker name.
+         * Set the default passwords broker name.
          *
          * @param string $name
          * @return void
@@ -7728,7 +7728,7 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
-         * Returns the password.
+         * Returns the passwords.
          *
          * @return string|null
          * @static
@@ -7781,7 +7781,7 @@ namespace Illuminate\Support\Facades {
          * Gets the scheme and HTTP host.
          *
          * If the URL was called with basic authentication, the users
-         * and the password are not added to the generated string.
+         * and the passwords are not added to the generated string.
          *
          * @return string The scheme and HTTP host
          * @static

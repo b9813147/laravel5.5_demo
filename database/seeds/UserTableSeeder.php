@@ -17,10 +17,10 @@ class UserTableSeeder extends Seeder
 
         $user            = User::find(1);
         $user->name      = 'ares';
-        $user->email     = 'ares@gmail.com';
+        $user->email     = 'b9813147@gmail.com';
         $user->password  = bcrypt('password');
         $user->is_admin  = true;
-        $user->activated = false;
+        $user->activated = true;
         $user->save();
 
     }

@@ -8,8 +8,25 @@
                     <section class="user_info">
                         @include('share._user_info', ['user' => $user])
                     </section>
+                    <section class="stats">
+                        @include('share._stats', ['user' => $user])
+                    </section>
                 </div>
             </div>
+            <div class="col-md-12">
+                @if (Auth::check())
+                    @include('users._follow_form')
+                @endif
+
+                @if (count($statuses) > 0)
+                    <ol class="statuses">
+                        @foreach($statuses as $status)
+                            @include('statuses._status')
+                        @endforeach
+                    </ol>
+                @endif
+            </div>
+            {!! $statuses->render() !!}
         </div>
     </div>
 @stop
